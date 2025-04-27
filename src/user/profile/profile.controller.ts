@@ -12,7 +12,7 @@ export class ProfileController {
 
   @Get()
   async getProfile(@Req() req) {
-    const userId = req.user.id;
+    const userId = req.user.userId;
     return this.profileService.getProfile(userId);
   }
 }

@@ -26,6 +26,4 @@ export class Order {
     @Column()
     rate_for_order: number;
 
-    @Column()
-    timestamp: Timestamp;
 }

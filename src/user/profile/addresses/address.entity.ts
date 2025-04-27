@@ -1,16 +1,16 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('delivery_address')
-export class Adress {
+export class Address {
 
     @PrimaryGeneratedColumn()
-    adress_id: number;
+    user_address_id: number;
 
     @Column()
     user_id: number; 
 
     @Column()
-    full_adress: string;
+    full_address: string;
 
     @Column()
     city: string;   
