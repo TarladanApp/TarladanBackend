@@ -15,4 +15,12 @@ export class UserService {
   findAll() : Promise<User[]> {
     return this.userRepository.find(); 
   }
+
+  async findOne(id: number): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { user_id: id } });
+    if (!user) {
+      throw new Error(`User with ID ${id} not found`);
+    }
+    return user;
+  }
 } 
