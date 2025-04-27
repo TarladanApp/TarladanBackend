@@ -9,13 +9,15 @@ import { ProfileService } from './profile.service';
 import { UserModule } from '../user.module';
 import { AddressController } from './addresses/address.controller';
 import { AddressService } from './addresses/address.service';
+import { CardController } from './cards/card.controller';
+import { CardService } from './cards/card.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([User, Address, Card, Order]),
     UserModule,
   ],
-  controllers: [ProfileController,AddressController],
-  providers: [ProfileService,AddressService],
+  controllers: [ProfileController,AddressController,CardController],
+  providers: [ProfileService,AddressService,CardService],
 })
 export class ProfileModule {}
