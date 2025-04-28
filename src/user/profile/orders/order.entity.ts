@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { OrderProduct } from "src/order-product/entities/order-product.entity";
+import { User } from "src/user/entities/user.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 
 @Entity('order')
 export class Order {
@@ -20,10 +22,17 @@ export class Order {
     @Column()
     delivery_date: string;
 
-    @Column()
+    @Column({default: false})
     use_any_coupon: boolean;
 
     @Column()
     rate_for_order: number;
+
+    @ManyToOne(() => User)
+    @JoinColumn({ name: 'user_id' })
+    user: User;
+
+    @OneToMany(() => OrderProduct, (orderProduct) => orderProduct.order)
+    orderProducts: OrderProduct[]; 
 
 }
