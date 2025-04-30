@@ -5,6 +5,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './user/profile/profile.module';
 import { OrderProductModule } from './order-product/order-product.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { OrderProductModule } from './order-product/order-product.module';
     UserModule,
     AuthModule,
     ProfileModule,
-    OrderProductModule
+    OrderProductModule,
+    ProductModule,
   ],
 })
 export class AppModule {}
