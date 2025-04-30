@@ -1,6 +1,6 @@
 import { OrderProduct } from "src/order-product/entities/order-product.entity";
 import { User } from "src/user/entities/user.entity";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { Column, ColumnTypeUndefinedError, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 
 @Entity('order')
 export class Order {
@@ -27,6 +27,9 @@ export class Order {
 
     @Column({nullable:true, type: 'float'})
     rate_for_order: number;
+
+    @Column({nullable:false})
+    delivery_address_id: number;
 
     @ManyToOne(() => User)
     @JoinColumn({ name: 'user_id' })

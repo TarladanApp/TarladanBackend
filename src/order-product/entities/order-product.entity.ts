@@ -30,6 +30,9 @@ export class OrderProduct {
     @Column()
     farmer_name: string;
 
+    @Column({nullable:false})
+    delivery_address_id: number;
+
     @ManyToOne(() => Order, (order) => order.orderProducts)
     @JoinColumn({ name: 'order_id' })
     order: Order;

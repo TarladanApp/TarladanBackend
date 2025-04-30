@@ -31,6 +31,7 @@ export class OrderProductService {
                 user_id: userId,
                 order_status: 'pending',
                 order_date: new Date().toISOString(),
+                delivery_address_id : createOrderDto.delivery_address_id,
                 estimated_delivery_date: this.calculateEstimatedDeliveryDate(),
                 use_any_coupon: createOrderDto.use_any_coupon ?? false,
             });
@@ -63,6 +64,7 @@ export class OrderProductService {
                   total_product_price: product.tarladan_price * item.unit_quantity,
                   farmer_id: product.farmer_id,
                   farmer_name: 'Farmer servisinden çekilecek', 
+                  delivery_address_id: createOrderDto.delivery_address_id,
                 });
         
                 await queryRunner.manager.save(orderProduct);
