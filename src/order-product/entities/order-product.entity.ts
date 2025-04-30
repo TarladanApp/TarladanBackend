@@ -1,4 +1,4 @@
-import { Order } from "src/user/profile/orders/order.entity";
+import { Order } from "src/user/profile/orders/entities/order.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('order_product')
@@ -21,7 +21,7 @@ export class OrderProduct {
     @Column()
     total_product_price: number;
 
-    @Column()
+    @Column({nullable :true})
     order_product_rate: string;
 
     @Column()

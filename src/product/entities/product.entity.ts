@@ -12,7 +12,7 @@ export class Product{
     @Column()
     product_katalog_name:string;
 
-    @Column()
+    @Column({nullable:false})
     product_name:string;
 
     @Column({type: 'float'})
@@ -24,7 +24,7 @@ export class Product{
     @Column({type: 'float'})
     tarladan_price:number;
 
-    @Column()
+    @Column({nullable:false})
     stock_quantity:number;
 
     @Column({type: 'float' , nullable:true})

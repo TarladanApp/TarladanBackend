@@ -19,13 +19,13 @@ export class Order {
     @Column()
     order_status: string;
 
-    @Column()
+    @Column({nullable:true})
     delivery_date: string;
 
     @Column({default: false})
-    use_any_coupon: boolean;
+    use_any_coupon?: boolean;
 
-    @Column()
+    @Column({nullable:true, type: 'float'})
     rate_for_order: number;
 
     @ManyToOne(() => User)
