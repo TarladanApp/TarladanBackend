@@ -21,7 +21,7 @@ export class OrderProduct {
     @Column()
     total_product_price: number;
 
-    @Column()
+    @Column({nullable :true})
     order_product_rate: string;
 
     @Column()
