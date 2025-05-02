@@ -6,6 +6,8 @@ import { Order } from "src/user/profile/orders/entities/order.entity";
 import { Product } from "src/product/entities/product.entity";
 import { CreateOrderDto } from "./dto/create-order.dto";
 import { create } from "domain";
+import { Address } from "src/user/profile/addresses/address.entity";
+import { privateDecrypt } from "crypto";
 
 @Injectable()
 export class OrderProductService {
@@ -17,6 +19,8 @@ export class OrderProductService {
         private orderRepository: Repository<Order>,
         @InjectRepository(Product)
         private productRepository: Repository<Product>,
+        @InjectRepository(Address)
+        private addressRepository: Repository<Address>,
     ){}
 
 
@@ -27,6 +31,14 @@ export class OrderProductService {
         await queryRunner.startTransaction();
 
         try{
+            const address = await this.addressRepository.findOne({
+              where: { user_address_id: createOrderDto.delivery_address_id, user_id: userId }
+            });
+        
+            if (!address) {
+              throw new NotFoundException(`Address with ID ${createOrderDto.delivery_address_id} not found`);
+            }
+
             const newOrder = this.orderRepository.create({
                 user_id: userId,
                 order_status: 'pending',
@@ -34,6 +46,13 @@ export class OrderProductService {
                 delivery_address_id : createOrderDto.delivery_address_id,
                 estimated_delivery_date: this.calculateEstimatedDeliveryDate(),
                 use_any_coupon: createOrderDto.use_any_coupon ?? false,
+                address_full: address.full_address,
+                address_city: address.city,
+                address_district: address.district,
+                address_neighborhood: address.neighborhood,
+                address_street: address.street,
+                address_floor: address.floor,
+                address_apartment: address.apartment
             });
 
             const savedOrder = await queryRunner.manager.save(newOrder);
@@ -59,6 +78,7 @@ export class OrderProductService {
                 const orderProduct = this.orderProductRepository.create({
                   order_id: savedOrder.order_id,
                   product_id: product.product_id,
+                  product_name: product.product_name,
                   unit_quantity: item.unit_quantity,
                   unit_price: product.tarladan_price,
                   total_product_price: product.tarladan_price * item.unit_quantity,

@@ -31,6 +31,27 @@ export class Order {
     @Column({nullable:false})
     delivery_address_id: number;
 
+    @Column({nullable:true})
+    address_full:string;
+
+    @Column({nullable:true})
+    address_city: string;
+    
+    @Column({nullable:true})
+    address_district: string;
+    
+    @Column({nullable:true})
+    address_neighborhood: string;
+    
+    @Column({nullable:true})
+    address_street: string;
+    
+    @Column({nullable:true})
+    address_floor: number;
+    
+    @Column({nullable:true})
+    address_apartment: string;
+
     @ManyToOne(() => User)
     @JoinColumn({ name: 'user_id' })
     user: User;

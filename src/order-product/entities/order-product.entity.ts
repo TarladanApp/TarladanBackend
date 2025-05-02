@@ -13,6 +13,9 @@ export class OrderProduct {
     product_id: number;
 
     @Column()
+    product_name:string
+
+    @Column()
     unit_quantity: number;
 
     @Column()
