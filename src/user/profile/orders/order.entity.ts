@@ -10,22 +10,25 @@ export class Order {
     @Column()
     user_id: number;
 
+    @Column({ nullable: true })
+    delivery_address_id: number;
+
     @Column()
     order_date: string;
 
-    @Column()
+    @Column({ nullable: true })
     estimated_delivery_date: string;
 
     @Column()
     order_status: string;
 
-    @Column()
+    @Column({ nullable: true })
     delivery_date: string;
 
     @Column({default: false})
     use_any_coupon: boolean;
 
-    @Column()
+    @Column({ nullable: true })
     rate_for_order: number;
 
     @ManyToOne(() => User)
