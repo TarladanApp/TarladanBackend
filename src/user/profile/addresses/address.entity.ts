@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "src/user/entities/user.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('delivery_address')
 export class Address {
@@ -29,5 +30,8 @@ export class Address {
 
     @Column()
     apartment: string;
+
+    @ManyToOne(() => User, (user) => user.addresses)
+    user: User;
 
 }

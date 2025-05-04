@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { Address } from './addresses/address.entity';
 import { Card } from './cards/card.entity';
-import { Order } from './orders/order.entity';
+import { Order } from './orders/entities/order.entity';
 
 @Injectable()
 export class ProfileService {
