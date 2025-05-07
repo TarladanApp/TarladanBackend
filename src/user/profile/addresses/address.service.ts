@@ -47,4 +47,16 @@ export class AddressService {
     await this.addressRepository.delete(id);
     return { deleted: true };
   }
+
+  async update(userId: number, id: number, updateAddressDto: Partial<CreateAddressDto>) {
+    const address = await this.findOne(userId, id); 
+
+    if (!address) {
+      throw new NotFoundException(`Address with ID ${id} not found`);
+    }
+
+    await this.addressRepository.update(id, updateAddressDto);
+    return { updated: true };
+  }
+
 }

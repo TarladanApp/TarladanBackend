@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { AddressService } from './address.service';
 import { CreateAddressDto } from './dto/create-address.dto';
@@ -31,5 +31,12 @@ export class AddressController {
   async removeAddress(@Req() req, @Param('id') id: string) {
     const userId = req.user.userId;
     return this.addressService.remove(userId, +id);
+  }
+
+  @Put(':id')
+  async updateAddress(@Req() req, @Param('id') id: string, @Body() updateAddressDto: Partial<CreateAddressDto>) {
+    const userId = req.user.userId;
+    const addressId = +id;
+    return this.addressService.update(userId, addressId, updateAddressDto);
   }
 }
