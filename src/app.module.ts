@@ -8,6 +8,7 @@ import { ProductModule } from './product/product.module';
 import { Order } from './user/profile/orders/order.entity';
 import { ProfileModule } from './user/profile/profile.module';
 import { UserModule } from './user/user.module';
+import { PerformanceModule } from './performance/performance.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { UserModule } from './user/user.module';
     ProfileModule,
     OrderProductModule,
     ProductModule,
+    PerformanceModule,
   ],
 })
 export class AppModule {}
