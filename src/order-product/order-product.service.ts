@@ -2,11 +2,11 @@ import { BadRequestException, Inject, Injectable, NotFoundException } from "@nes
 import { OrderProduct } from "./entities/order-product.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DataSource, Repository } from "typeorm";
-import { Order } from "src/user/profile/orders/entities/order.entity";
-import { Product } from "src/product/entities/product.entity";
+import { Order } from "../user/profile/orders/entities/order.entity";
+import { Product } from "../product/entities/product.entity";
 import { CreateOrderDto } from "./dto/create-order.dto";
 import { create } from "domain";
-import { Address } from "src/user/profile/addresses/address.entity";
+import { Address } from "../user/profile/addresses/address.entity";
 import { privateDecrypt } from "crypto";
 
 @Injectable()
@@ -76,7 +76,6 @@ export class OrderProductService {
         
                
                 const orderProduct = this.orderProductRepository.create({
-                  order_id: savedOrder.order_id,
                   product_id: product.product_id,
                   product_name: product.product_name,
                   unit_quantity: item.unit_quantity,
@@ -94,7 +93,6 @@ export class OrderProductService {
               await queryRunner.commitTransaction();
         
               return this.orderRepository.findOne({
-                where: { order_id: savedOrder.order_id },
                 relations: ['orderProducts'],
               });
             } catch (error) {

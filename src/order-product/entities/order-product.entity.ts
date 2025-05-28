@@ -1,4 +1,4 @@
-import { Order } from "src/user/profile/orders/entities/order.entity";
+import { Order } from "../../user/profile/orders/entities/order.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('order_product')
