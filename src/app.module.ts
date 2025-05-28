@@ -5,7 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { OrderProduct } from './order-product/entities/order-product.entity';
 import { OrderProductModule } from './order-product/order-product.module';
 import { ProductModule } from './product/product.module';
-import { Order } from './user/profile/orders/order.entity';
+import { Order } from './user/profile/orders/entities/order.entity';
 import { ProfileModule } from './user/profile/profile.module';
 import { UserModule } from './user/user.module';
 import { PerformanceModule } from './performance/performance.module';
