@@ -1,7 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Req, UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../../../auth/jwt-auth.guard';
 import { AddressService } from './address.service';
 import { CreateAddressDto } from './dto/create-address.dto';
+import { UpdateAddressDto } from './dto/update-address.dto';
 
 
 @Controller('user/profile/addresses')
@@ -34,7 +35,7 @@ export class AddressController {
   }
 
   @Put(':id')
-  async updateAddress(@Req() req, @Param('id') id: string, @Body() updateAddressDto: Partial<CreateAddressDto>) {
+  async updateAddress(@Req() req, @Param('id') id: string, @Body() updateAddressDto: Partial<UpdateAddressDto>) {
     const userId = req.user.userId;
     const addressId = +id;
     return this.addressService.update(userId, addressId, updateAddressDto);

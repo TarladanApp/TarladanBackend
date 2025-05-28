@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Address } from './address.entity';
 import { CreateAddressDto } from './dto/create-address.dto';
+import { UpdateAddressDto } from './dto/update-address.dto';
 
 @Injectable()
 export class AddressService {
@@ -48,7 +49,7 @@ export class AddressService {
     return { deleted: true };
   }
 
-  async update(userId: number, id: number, updateAddressDto: Partial<CreateAddressDto>) {
+  async update(userId: number, id: number, updateAddressDto: Partial<UpdateAddressDto>) {
     const address = await this.findOne(userId, id); 
 
     if (!address) {

@@ -1,4 +1,4 @@
-import { User } from "src/user/entities/user.entity";
+import { User } from "../../entities/user.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('delivery_address')
