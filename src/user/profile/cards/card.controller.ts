@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Req, UseGuards } from "@nestjs/common";
 import { CardService } from "./card.service";
 import { CreateCardDto } from "./dto/create-card.dto";
-import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
+import { JwtAuthGuard } from "../../../auth/jwt-auth.guard";
 
 @Controller('user/profile/cards')
 @UseGuards(JwtAuthGuard)
