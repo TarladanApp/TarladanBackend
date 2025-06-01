@@ -5,10 +5,16 @@ import { PerformanceService } from "./performance.service";
 
 @Controller("performance")
 export class PerformanceController {
-    constructor(private readonly performanceService: PerformanceService) {}
+    constructor(
+        private readonly performanceService: PerformanceService) {}
 
     @Get("fetch-product")
     async getPerformance(): Promise<PerformanceDto> {
-        return this.performanceService.getPerformanceMetrics();
+        return this.performanceService.getProductPerformanceMetrics();
     }   
+
+    @Get("fetch-user")
+    async getUserPerformance(): Promise<PerformanceDto> {
+        return this.performanceService.getUserPerformanceMetrics();
+    }
 }
