@@ -24,7 +24,7 @@ export class PerformanceService {
         const startTime = Date.now();
         const startMemory = process.memoryUsage().heapUsed;
 
-        this.productService.findAll();
+        await this.productService.findAll();
 
         const endMemory = process.memoryUsage().heapUsed;
         const endTime = Date.now();
