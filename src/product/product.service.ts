@@ -13,7 +13,7 @@ export class ProductService {
 
     async findAll() {
         return this.productRepository.find({
-            order: { product_id: 'ASC' },
+            order: { id: 'ASC' },
         });
     }
 }

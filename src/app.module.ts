@@ -9,6 +9,7 @@ import { Order } from './user/profile/orders/entities/order.entity';
 import { ProfileModule } from './user/profile/profile.module';
 import { UserModule } from './user/user.module';
 import { PerformanceModule } from './performance/performance.module';
+import { FarmerModule } from './farmer/farmer.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { PerformanceModule } from './performance/performance.module';
       synchronize: true,
       entities: [Order, OrderProduct]
     }),
+    FarmerModule,
     UserModule,
     AuthModule,
     ProfileModule,

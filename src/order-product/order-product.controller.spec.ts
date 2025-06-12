@@ -22,7 +22,7 @@ describe('OrderProductController', () => {
             use_any_coupon: false,
             products: [
                 {
-                    product_id: 1,
+                    product_id: 'c10a95f0-f93b-4c80-bd89-c86c3fd18fc3',
                     unit_quantity: 2
                 }
             ]

@@ -1,3 +1,4 @@
+import { UUID } from "crypto";
 import { Order } from "../../user/profile/orders/entities/order.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -9,8 +10,8 @@ export class OrderProduct {
     @Column()
     order_id: number;
 
-    @Column()
-    product_id: number;
+    @Column('uuid')
+    product_id: string;
 
     @Column()
     product_name:string

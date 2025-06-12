@@ -59,7 +59,7 @@ export class OrderProductService {
 
             for (const item of createOrderDto.products) {
                 const product = await this.productRepository.findOne({
-                  where: { product_id: item.product_id }
+                  where: { id: item.product_id }
                 });
         
                 if (!product) {
@@ -76,7 +76,7 @@ export class OrderProductService {
         
                
                 const orderProduct = this.orderProductRepository.create({
-                  product_id: product.product_id,
+                  product_id: product.id,
                   product_name: product.product_name,
                   unit_quantity: item.unit_quantity,
                   unit_price: product.tarladan_price,

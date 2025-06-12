@@ -1,12 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { UUID } from "crypto";
+import { Farmer } from "src/farmer/entities/farmer.entity";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('product_table')
+@Entity('products')
 export class Product{
 
-    @PrimaryGeneratedColumn()
-    product_id:number;
+    @PrimaryGeneratedColumn('uuid')
+    id:string;
 
-    @Column()
+    @Column({nullable:false})
     farmer_id:number;
 
     @Column()
@@ -27,7 +29,17 @@ export class Product{
     @Column({nullable:false})
     stock_quantity:number;
 
-    @Column({type: 'float' , nullable:true})
-    product_rating:number;
+    @Column({nullable:true})
+    image_url:string;
+
+    @Column()
+    created_at:Date;
+
+    @Column()
+    updated_at:Date;
+
+    @ManyToOne(() => Farmer, (farmer) => farmer.products)
+    @JoinColumn({ name: 'farmer_id' ,referencedColumnName: 'farmer_id'})
+    farmer: Farmer;
 
 }

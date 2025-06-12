@@ -6,6 +6,6 @@ export class CreateOrderDto {
 }
 
 export class CreateOrderProductDto {
-    product_id:number;
+    product_id:string;
     unit_quantity:number;
 }

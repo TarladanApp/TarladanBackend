@@ -29,7 +29,7 @@ describe('OrderProductService', () => {
   };
 
   const mockProduct = {
-    product_id: 1,
+    product_id: 'c10a95f0-f93b-4c80-bd89-c86c3fd18fc3',
     product_name: 'Test Product',
     stock_quantity: 10,
     tarladan_price: 100,
@@ -56,7 +56,7 @@ describe('OrderProductService', () => {
 
   const mockOrderProduct = {
     order_id: 1,
-    product_id: 1,
+    product_id: 'c10a95f0-f93b-4c80-bd89-c86c3fd18fc3',
     product_name: 'Test Product',
     unit_quantity: 2,
     unit_price: 100,
@@ -137,7 +137,7 @@ describe('OrderProductService', () => {
       use_any_coupon: false,
       products: [
         {
-          product_id: 1,
+          product_id: 'c10a95f0-f93b-4c80-bd89-c86c3fd18fc3',
           unit_quantity: 2
         }
       ]
@@ -165,7 +165,7 @@ describe('OrderProductService', () => {
     it('should throw BadRequestException if not enough stock', async () => {
       const createOrderDtoWithLargeQuantity = {
         ...createOrderDto,
-        products: [{ product_id: 1, unit_quantity: 20 }]
+        products: [{ product_id: 'c10a95f0-f93b-4c80-bd89-c86c3fd18fc3', unit_quantity: 20 }]
       };
       await expect(service.createOrder(1, createOrderDtoWithLargeQuantity)).rejects.toThrow(BadRequestException);
     });
