@@ -52,6 +52,9 @@ export class Farmer {
     @Column({nullable:true})
     farmer_biografi:string;
 
+    @Column('uuid')
+    auth_id:string;
+
     @OneToMany(() => Product, (product) => product.farmer)
     products: Product[];
 }
