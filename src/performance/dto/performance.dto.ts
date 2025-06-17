@@ -3,6 +3,7 @@ export class PerformanceDto {
     memoryUsedKb:number;
     recordCount: number;
     cpuPercent: number;
+    jsonSizeKb?: number;
 }
 
 export {};

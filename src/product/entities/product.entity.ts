@@ -32,10 +32,10 @@ export class Product{
     @Column({nullable:true})
     image_url:string;
 
-    @Column()
+    @Column({nullable:true})
     created_at:Date;
 
-    @Column()
+    @Column({nullable:true})
     updated_at:Date;
 
     @ManyToOne(() => Farmer, (farmer) => farmer.products)

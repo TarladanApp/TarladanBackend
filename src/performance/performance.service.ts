@@ -24,7 +24,8 @@ export class PerformanceService {
         const startTime = Date.now();
         const startMemory = process.memoryUsage().heapUsed;
 
-        await this.productService.findAll();
+        const products = await this.productService.findAll();
+        const jsonSizeKb = Buffer.byteLength(JSON.stringify(products), 'utf8') / 1024;
 
         const endMemory = process.memoryUsage().heapUsed;
         const endTime = Date.now();
@@ -40,6 +41,7 @@ export class PerformanceService {
         dto.memoryUsedKb = memoryUsedKb;
         dto.recordCount = recordCount;
         dto.cpuPercent = cpu; 
+        dto.jsonSizeKb = jsonSizeKb;
 
         return dto;
     }
