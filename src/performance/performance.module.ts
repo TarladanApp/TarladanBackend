@@ -8,14 +8,19 @@ import { PerformanceService } from './performance.service';
 import { PerformanceController } from './performance.controller';
 import { UserModule } from 'src/user/user.module';
 import { User } from 'src/user/entities/user.entity';
+import { FarmerModule } from 'src/farmer/farmer.module';
+import { FarmerService } from 'src/farmer/farmer.service';
+import { FarmerController } from 'src/farmer/farmer.controller';
+import { Farmer } from 'src/farmer/entities/farmer.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Product,User]),
+    TypeOrmModule.forFeature([Product, User, Farmer]),
     ProductModule,
-    UserModule
+    UserModule,
+    FarmerModule
   ],
-  controllers: [ProductController,PerformanceController],
-  providers: [ProductService,PerformanceService],
+  controllers: [ProductController, PerformanceController, FarmerController],
+  providers: [ProductService, PerformanceService, FarmerService],
 })
-export class PerformanceModule{}
+export class PerformanceModule {}

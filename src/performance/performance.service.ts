@@ -6,6 +6,7 @@ import { PerformanceDto } from "./dto/performance.dto";
 import * as pidusage from 'pidusage';
 import { ProductService } from "../product/product.service";
 import { UserService } from "../user/user.service";
+import { FarmerService } from "../farmer/farmer.service";
 
 @Injectable()
 export class PerformanceService {
@@ -14,6 +15,7 @@ export class PerformanceService {
         private readonly productRepository: Repository<Product>,
         private readonly productService: ProductService,
         private readonly userService: UserService,
+        private readonly farmerService: FarmerService,
     ) {}
 
     private calculateMemoryUsage(startMemory: number, endMemory: number): number {
@@ -66,6 +68,32 @@ export class PerformanceService {
         dto.memoryUsedKb = memoryUsedKb;
         dto.recordCount = recordCount;
         dto.cpuPercent = cpu;
+
+        return dto;
+    }
+
+    async getFarmerPerformanceMetrics(): Promise<PerformanceDto> {
+        const startTime = Date.now();
+        const startMemory = process.memoryUsage().heapUsed;
+
+        const farmers = await this.farmerService.findAll();
+        const jsonSizeKb = Buffer.byteLength(JSON.stringify(farmers), 'utf8') / 1024;
+
+        const endMemory = process.memoryUsage().heapUsed;
+        const endTime = Date.now();
+
+        const recordCount = farmers.length;
+        const durationMs = endTime - startTime;
+        const memoryUsedKb = this.calculateMemoryUsage(startMemory, endMemory);
+
+        const {cpu} = await pidusage(process.pid);
+
+        const dto = new PerformanceDto();
+        dto.durationMs = durationMs;
+        dto.memoryUsedKb = memoryUsedKb;
+        dto.recordCount = recordCount;
+        dto.cpuPercent = cpu;
+        dto.jsonSizeKb = jsonSizeKb;
 
         return dto;
     }

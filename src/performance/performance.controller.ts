@@ -17,4 +17,9 @@ export class PerformanceController {
     async getUserPerformance(): Promise<PerformanceDto> {
         return this.performanceService.getUserPerformanceMetrics();
     }
+
+    @Get("fetch-farmer")
+    async getFarmerPerformance(): Promise<PerformanceDto> {
+        return this.performanceService.getFarmerPerformanceMetrics();
+    }
 }
