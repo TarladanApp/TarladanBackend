@@ -37,6 +37,9 @@ export class OrderProduct {
     @Column({nullable:false})
     delivery_address_id: number;
 
+    @Column({nullable:true})
+    order_product_status:string;
+
     @ManyToOne(() => Order, (order) => order.orderProducts)
     @JoinColumn({ name: 'order_id' })
     order: Order;

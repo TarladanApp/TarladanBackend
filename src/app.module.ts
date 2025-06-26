@@ -20,7 +20,7 @@ import { FarmerModule } from './farmer/farmer.module';
       type: 'postgres',
       url: process.env.DATABASE_URL,
       autoLoadEntities: true,
-      synchronize: true,
+      synchronize: false,
       entities: [Order, OrderProduct]
     }),
     FarmerModule,

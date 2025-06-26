@@ -47,13 +47,16 @@ export class Farmer {
     farmer_tc_no:string;
 
     @Column({nullable:true})
-    img_url:string;
+    imgurl:string;
 
     @Column({nullable:true})
     farmer_biografi:string;
 
     @Column('uuid')
     auth_id:string;
+
+    @Column({nullable:true})
+    farmer_store_activity:string;
 
     @OneToMany(() => Product, (product) => product.farmer)
     products: Product[];
