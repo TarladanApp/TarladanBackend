@@ -61,6 +61,12 @@ describe('PerformanceService', () => {
           useValue: {
             findAll: jest.fn().mockResolvedValue(mockUsers)
           }
+        },
+        {
+          provide: require('../farmer/farmer.service').FarmerService,
+          useValue: {
+            findAll: jest.fn().mockResolvedValue([])
+          }
         }
       ]
     }).compile();

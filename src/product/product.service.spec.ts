@@ -45,7 +45,7 @@ describe('ProductService', () => {
 
   it('findAll should return products', async () => {
     const result = await service.findAll();
-    expect(repo.find).toHaveBeenCalledWith({ order: { product_id: 'ASC' } });
+    expect(repo.find).toHaveBeenCalledWith({ order: { id: 'ASC' } });
     expect(result).toEqual(mockProducts);
   });
 }); 

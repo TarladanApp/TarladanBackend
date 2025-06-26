@@ -1,5 +1,5 @@
 import { UUID } from "crypto";
-import { Farmer } from "src/farmer/entities/farmer.entity";
+import { Farmer } from "../../farmer/entities/farmer.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('products')
