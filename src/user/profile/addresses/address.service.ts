@@ -49,15 +49,26 @@ export class AddressService {
     return { deleted: true };
   }
 
-  async update(userId: number, id: number, updateAddressDto: Partial<UpdateAddressDto>) {
-    const address = await this.findOne(userId, id); 
+async update(userId: number, id: number, updateAddressDto: Partial<UpdateAddressDto>) {
+  const address = await this.findOne(userId, id); 
 
-    if (!address) {
-      throw new NotFoundException(`Address with ID ${id} not found`);
-    }
-
-    await this.addressRepository.update(id, updateAddressDto);
-    return { updated: true };
+  if (!address) {
+    throw new NotFoundException(`Address with ID ${id} not found`);
   }
+
+
+  if (updateAddressDto.isDefault === true) {
+    await this.addressRepository.update(
+      { user_id: userId },
+      { isDefault: false }
+    );
+  }
+
+  await this.addressRepository.update(
+    { user_address_id: id, user_id: userId },
+      updateAddressDto,
+    );
+  return { updated: true };
+}
 
 }

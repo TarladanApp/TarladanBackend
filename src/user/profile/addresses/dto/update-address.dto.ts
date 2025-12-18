@@ -6,4 +6,5 @@ export class UpdateAddressDto {
     street?: string;
     floor?: number;
     apartment?: string;
+    isDefault?: boolean;
 }

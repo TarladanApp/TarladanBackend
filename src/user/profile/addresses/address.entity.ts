@@ -1,5 +1,5 @@
-import { User } from "../../entities/user.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "../../entities/user.entity";
 
 @Entity('delivery_address')
 export class Address {
@@ -30,6 +30,9 @@ export class Address {
 
     @Column()
     apartment: string;
+
+    @Column({ name: 'is_default', type: 'boolean', default: false })
+    isDefault: boolean;
 
     @ManyToOne(() => User, (user) => user.addresses)
     user: User;
